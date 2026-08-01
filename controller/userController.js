@@ -37,9 +37,11 @@ exports.getUserById = async (req, res) => {
 };
 
 exports.updateUser = async (req, res) => {
-    try {
     const { error } = validateUser(req.body);
-    if (error) return res.status(404).send("User not found");
+    if (error) return res.status(400).send(error.details[0].message);
+    try {
+        const user = await User.findByPk(req.params.id);
+        if(!user) return res.status(404).send("User not found")
     await user.update(req.body);
     res.status(200).send(user);
     } catch (error) {

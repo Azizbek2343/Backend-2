@@ -35,9 +35,9 @@ module.exports = (sequelize, DataTypes) => {
         },
     })
 
-    User.beforeSave(async (User, options) => {
-        if (User.changed("password")) {
-            User.password = await bcrypt.hash(User.password, 10)
+    User.beforeSave(async (user, options) => {
+        if (user.changed("password")) {
+            user.password = await bcrypt.hash(user.password, 10)
         }
     })
 
