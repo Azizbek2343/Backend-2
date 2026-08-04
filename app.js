@@ -1,8 +1,10 @@
 const express = require("express");
 const dotenv = require("dotenv");
 const cors = require("cors");
-const sequelize = require("./database");
-
+const sequelize = require("./config/database");
+const userRoutes = require("./routes/userRoutes");
+// const customerRoutes = require("./routes/customerRoutes");
+const setupSwagger = require("./swagger/swagger");
 
 dotenv.config();
 
@@ -12,15 +14,19 @@ const PORT = process.env.PORT;
 app.use(express.json());
 app.use(cors({ origin: "*"}));
 
+app.use("/app", userRoutes);
+// app.use("/api", customerRoutes);
+setupSwagger(app);
+
 
 
 sequelize
     .sync()
     .then(() => {
-      console.log("Bazaga ulanda");
+      console.log("Bazaga ulandi");
       app.listen(PORT, '0.0.0.0', () => {
         console.log('Server ishlayapti');
-        console.log('Local: http://localhost:${PORT}');
+        console.log(`Local: http://localhost:${PORT}/api-docs`);
       });  
     })
 
