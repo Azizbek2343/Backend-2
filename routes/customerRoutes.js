@@ -1,20 +1,20 @@
 const express = require("express");
 const router = express.Router();
-const userController = require("../controller/userController");
+const customerController = require("../controller/customerController");
 
 /**
  * @swagger
  * tags:
- *   name: Users
- *   description: User management
+ *   name: Customers
+ *   description: Customer management
  */
 
 /**
  * @swagger
- * /api/users:
+ * /api/customers:
  *  post:
- *    tags: [Users]
- *    summary: Create a new user
+ *    tags: [Customers]
+ *    summary: Create a new customer
  *    requestBody:
  *      required: true
  *      content:
@@ -26,93 +26,91 @@ const userController = require("../controller/userController");
  *                type: string
  *              email:
  *                type: string
- *              password:
+ *              address:
  *                type: string
- *              customer_id:
- *                type: number
  *    responses:
  *      201:
- *        description: User created
+ *        description: Customer created
  *      400:
  *        description: Invalid input
  *      500:
  *        description: Server error
  */
-router.post("/users", userController.createUser);
+router.post("/customers", customerController.createCustomer);
 
 /**
  * @swagger
- * /api/users:
+ * /api/customers:
  *   get:
- *     tags: [Users]
- *     summary: Get all users
+ *     tags: [Customers]
+ *     summary: Get all Customers
  *     responses:
  *       200:
- *         description: List of users
+ *         description: List of customers
  *       500:
  *         description: Server error
  */
-router.get("/users", userController.getUsers);
+router.get("/customers", customerController.getCustomers);
 
 /**
  * @swagger
- * /api/users/search:
+ * /api/customers/search:
  *   get:
- *     tags: [Users]
- *     summary: Search users by name or email
+ *     tags: [Customers]
+ *     summary: Search customers by name or email
  *     parameters:
  *       - in: query
  *         name: query
  *         schema:
  *           type: string
  *         required: true
- *         description: Search query for user name or email
+ *         description: Search query for customer name or email
  *     responses:
  *       200:
- *         description: List of users matching the search query
+ *         description: List of customers matching the search query
  *       400:
  *         description: Search query is required
  *       500:
  *         description: Server error
  */
-router.get("/users/search", userController.searchUsers);
+router.get("/customers/search", customerController.searchCustomers);
 
 /**
  * @swagger
- * /api/users/{id}:
+ * /api/customers/{id}:
  *  get:
- *    tags: [Users]
- *    summary: Get user by ID
+ *    tags: [Customers]
+ *    summary: Get customer by ID
  *    parameters:
  *      - in: path
  *        name: id
  *        schema: 
  *          type: integer
  *        required: true
- *        description: User ID
+ *        description: Customer ID
  *    responses:
  *      200:
- *        description: User details
+ *        description: Customer details
  *      404:
- *        description: User not found
+ *        description: Customer not found
  *      500:
  *        description: Server error
  */
-router.get("/users/:id", userController.getUserById);
+router.get("/customers/:id", customerController.getCustomerById);
 
 /**
  * @swagger
- * /api/users/{id}:
+ * /api/customers/{id}:
  *   put:
- *     tags: [Users]
- *     summary: Update user by ID
+ *     tags: [Customers]
+ *     summary: Update customer by ID
  *     parameters: 
  *       - in: path
  *         name: id
  *         schema:
  *           type: integer
  *         required: true
- *         description: User ID
+ *         description: Customer ID
  *     requestBody: 
  *       required: true
  *       content: 
@@ -124,39 +122,39 @@ router.get("/users/:id", userController.getUserById);
  *                 type: string
  *               email:
  *                 type: string
- *               password:
+ *               address:
  *                 type: string
  *     responses:
  *       200: 
- *         description: User updated
+ *         description: Customer updated
  *       400:
  *         description: Invalid input
  *       500:
  *         description: Server error
  */
-router.put("/users/:id", userController.updateUser);
+router.put("/customers/:id", customerController.updateCustomer);
 
 /**
  * @swagger
- * /api/users/{id}:
+ * /api/customers/{id}:
  *   delete:
- *     tags: [Users]
- *     summary: Delete user by ID
+ *     tags: [Customers]
+ *     summary: Delete customer by ID
  *     parameters:
  *       - in: path
  *         name: id
  *         schema:
  *           type: integer
  *         required: true
- *         description: User ID
+ *         description: Customer ID
  *     responses:
  *       204:
- *         description: User deleted
+ *         description: Customer deleted
  *       404:
- *         description: User not found
+ *         description: Customer not found
  *       500: 
  *         description: Server error
  */
-router.delete("/users/:id", userController.deleteUser);
+router.delete("/customers/:id", customerController.deleteCustomer);
 
 module.exports = router;
