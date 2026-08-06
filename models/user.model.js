@@ -39,7 +39,13 @@ module.exports = (sequelize, DataTypes) => {
         if (user.changed("password")) {
             user.password = await bcrypt.hash(user.password, 10)
         }
-    })
+    });
+    User.associate = (models) => {
+        User.belongsTo(models.Customer, {
+            foreignKey: "customer_id",
+            as: "customer",
+        });
+    }
 
    return User
 }

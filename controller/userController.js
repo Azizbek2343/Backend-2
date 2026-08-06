@@ -1,5 +1,5 @@
 // const { User, Customer } = require("../models");
-const { User } = require("../models");
+const { User, Customer } = require("../models");
 const { validateUser } = require("../validation/userValidation");
 const { Op } = require("sequelize");
 
@@ -27,6 +27,9 @@ exports.getUsers = async(req, res) => {
 exports.getUserById = async (req, res) => {
     try {
         const user = await User.findByPk(req.params.id, {
+            include: [
+                { model: Customer, as: "customer" },
+            ],
             // include: [{ model: CustomElementRegistry, as: "customer" }],
         });
         if (!user) return res.status(404).send("User not found");
