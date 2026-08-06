@@ -3,7 +3,7 @@ const dotenv = require("dotenv");
 const cors = require("cors");
 const sequelize = require("./config/database");
 const userRoutes = require("./routes/userRoutes");
-// const customerRoutes = require("./routes/customerRoutes");
+const customerRoutes = require("./routes/customerRoutes");
 const setupSwagger = require("./swagger/swagger");
 
 dotenv.config();
@@ -15,7 +15,7 @@ app.use(express.json());
 app.use(cors({ origin: "*"}));
 
 app.use("/app", userRoutes);
-// app.use("/api", customerRoutes);
+app.use("/api", customerRoutes);
 setupSwagger(app);
 
 
