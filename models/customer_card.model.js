@@ -1,7 +1,7 @@
-const { allow } = require("joi");
+const { DataTypes } = require("sequelize");
 
-module.exports = (sequelize, DataTypes) => {
-    const CustomerCard = sequelize.define("Customer", {
+module.exports = (sequelize) => {
+    const CustomerCard = sequelize.define("CustomerCard", {
         id: {
             type: DataTypes.INTEGER,
             autoIncrement: true,
@@ -14,6 +14,7 @@ module.exports = (sequelize, DataTypes) => {
         phone: {
             type: DataTypes.STRING,
             allowNull: false,
+            unique: true
         },
         number: {
             type: DataTypes.STRING,
@@ -29,20 +30,20 @@ module.exports = (sequelize, DataTypes) => {
         },
         is_active: {
             type: DataTypes.BOOLEAN,
-            allowNull: false
+            defaultValue: false
         },
         is_main: {
             type: DataTypes.BOOLEAN,
-            allowNull: false,
+            defaultValue: false,
         },
     });
 
     CustomerCard.associate = (models) => {
-        CustomerCard.hasMany(models.Customer, {
-            foreignKey: "customerCard_id",
-            as: "customer"
+        CustomerCard.belongsTo(models.Customer, {
+            foreignKey: "customer_id",
+            as: "customer",
         });
     };
 
-    return CustomerCard
-}
+    return CustomerCard;
+};

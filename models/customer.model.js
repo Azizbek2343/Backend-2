@@ -1,6 +1,6 @@
-const { allow } = require("joi")
+const { DataTypes } = require("sequelize");
 
-module.exports = (sequelize, DataTypes) => {
+module.exports = (sequelize) => {
     const Customer = sequelize.define("Customer", {
         id: {
             type: DataTypes.INTEGER,
@@ -30,7 +30,12 @@ module.exports = (sequelize, DataTypes) => {
             foreignKey: "customer_id",
             as: "user_customer",
         });
-    };
-    
-    return Customer
-}
+        
+        Customer.hasMany(models.CustomerCard, {
+            foreignKey: "customer_id",
+            as: "customerCards",
+        });
+    };  
+
+    return Customer;
+};
