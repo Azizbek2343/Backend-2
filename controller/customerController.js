@@ -50,7 +50,7 @@ exports.updateCustomer = async (req, res) => {
 
 exports.deleteCustomer = async (req, res) => {
     try {
-        const  customer = await Customer.findByPk(req.params.id);
+        const customer = await Customer.findByPk(req.params.id);
         if (!customer) return res.status(404).send("Customer not found");
 
         const customerData = customer.toJSON();
