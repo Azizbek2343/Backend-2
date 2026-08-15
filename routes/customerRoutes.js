@@ -148,7 +148,7 @@ router.put("/customers/:id", customerController.updateCustomer);
  *         required: true
  *         description: Customer ID
  *     responses:
- *       204:
+ *       200:
  *         description: Customer deleted
  *       404:
  *         description: Customer not found
