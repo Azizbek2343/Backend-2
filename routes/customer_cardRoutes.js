@@ -12,23 +12,23 @@ const customerCardController = require("../controller/customer_cardController");
 /**
  * @swagger
  * /api/customerCards:
- *  post:
- *    tags: [CustomerCards]
- *    summary: Create a new customer card
- *    requestBody:
- *      required: true
- *      content:
- *        application/json:
- *          schema:
- *            type: object
- *            properties:
- *              name:
- *                type: string
- *              phone:
- *                type: string
- *              number:
- *                type: string
- *              year:
+ *   post:
+ *     tags: [CustomerCards]
+ *     summary: Create a new customer card
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               name:
+ *                 type: string
+ *               phone:
+ *                 type: string
+ *               number:
+ *                 type: string
+ *               year:
  *                 type: string
  *               month:
  *                 type: string
@@ -36,13 +36,13 @@ const customerCardController = require("../controller/customer_cardController");
  *                 type: boolean
  *               is_main:
  *                 type: boolean
- *    responses:
- *      201:
- *        description: Customer card created
- *      400:
- *        description: Invalid input
- *      500:
- *        description: Server error
+ *     responses:
+ *       201:
+ *         description: Customer card created
+ *       400:
+ *         description: Invalid input
+ *       500:
+ *         description: Server error
  */
 router.post("/customerCards", customerCardController.createCustomerCard);
 
@@ -86,23 +86,23 @@ router.get("/customerCards/search", customerCardController.searchCustomerCards);
 /**
  * @swagger
  * /api/customerCards/{id}:
- *  get:
- *    tags: [CustomerCards]
- *    summary: Get customer card by ID
- *    parameters:
- *      - in: path
- *        name: id
- *        schema: 
- *          type: integer
- *        required: true
- *        description: Customer card ID
- *    responses:
- *      200:
- *        description: Customer card details
- *      404:
- *        description: Customer card not found
- *      500:
- *        description: Server error
+ *   get:
+ *     tags: [CustomerCards]
+ *     summary: Get customer card by ID
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: integer
+ *         required: true
+ *         description: Customer card ID
+ *     responses:
+ *       200:
+ *         description: Customer card details
+ *       404:
+ *         description: Customer card not found
+ *       500:
+ *         description: Server error
  */
 router.get("/customerCards/:id", customerCardController.getCustomerCardById);
 
@@ -112,18 +112,18 @@ router.get("/customerCards/:id", customerCardController.getCustomerCardById);
  *   put:
  *     tags: [CustomerCards]
  *     summary: Update customer card by ID
- *     parameters: 
+ *     parameters:
  *       - in: path
  *         name: id
  *         schema:
  *           type: integer
  *         required: true
  *         description: Customer card ID
- *     requestBody: 
+ *     requestBody:
  *       required: true
- *       content: 
+ *       content:
  *         application/json:
- *           schema: 
+ *           schema:
  *             type: object
  *             properties:
  *               name:
@@ -141,7 +141,7 @@ router.get("/customerCards/:id", customerCardController.getCustomerCardById);
  *               is_main:
  *                 type: boolean
  *     responses:
- *       200: 
+ *       200:
  *         description: Customer card updated
  *       400:
  *         description: Invalid input
@@ -168,7 +168,7 @@ router.put("/customerCards/:id", customerCardController.updateCustomerCard);
  *         description: Customer card deleted
  *       404:
  *         description: Customer card not found
- *       500: 
+ *       500:
  *         description: Server error
  */
 router.delete("/customerCards/:id", customerCardController.deleteCustomerCard);

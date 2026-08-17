@@ -3,9 +3,9 @@ const Joi = require("joi");
 const validateCustomerCard = (customerCard) => {
     const schema = Joi.object({
         name: Joi.string().min(3).required(),
-        phone: Joi.string().email().required(),
+        phone: Joi.string().required(),
         number: Joi.string().required(),
-        year: Joi.string().min(1990).max(new Date, getFullYear()).required(),
+        year: Joi.string().required(),
         month: Joi.string().required(),
         is_active: Joi.boolean(),
         is_main: Joi.boolean(),

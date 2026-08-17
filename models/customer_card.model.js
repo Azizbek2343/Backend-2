@@ -36,6 +36,10 @@ module.exports = (sequelize) => {
             type: DataTypes.BOOLEAN,
             defaultValue: false,
         },
+        customer_id: {
+            type: DataTypes.INTEGER,
+            allowNull: true,
+        }
     });
 
     CustomerCard.associate = (models) => {
